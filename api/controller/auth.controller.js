@@ -16,7 +16,7 @@ export const signup = asyncError( async(req,res,next)=>{
 
     const user = await User.create({ username, email, password });
     const tokenUser = { userId: user._id, username: user.username, email: user.email };
-    res.staus(StatusCodes.OK).json({ user: tokenUser });
+    res.status(StatusCodes.OK).json({ user: tokenUser });
  
 })
 
