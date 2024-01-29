@@ -29,7 +29,7 @@ export const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = 404;
   }
 
-  return res.status(customError.statusCode).json({ error: customError.msg });
+  return res.status(customError.statusCode).json({success: false,error: customError.msg });
 };
 export const asyncError = (passedFunc) => (req, res, next) => {
   Promise.resolve(passedFunc(req, res, next)).catch(next);

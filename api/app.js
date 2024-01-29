@@ -26,6 +26,7 @@ app.get('/',(req,res)=>{
 app.use('/api/auth',authRoutes)
 app.use(errorHandlerMiddleware)
 
+
 const port = process.env.PORT || 5000;
 const start = async ()=>{
   try{await connect_db(process.env.MONGO_URI)
