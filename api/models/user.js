@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import validator from "validator";
+import validator  from "validator";
 import bcrypt from "bcryptjs";
 
 const user = new mongoose.Schema({
@@ -25,7 +25,13 @@ const user = new mongoose.Schema({
     type: String,
     required:[true,"Plese provide a email and password"],
     minlength:6,
+  },
+  role:{
+    type: String,
+    enum: ['admin', 'user'],
+    default: 'user',
   }
+  
 
 },{
   timestamps:true}
@@ -36,6 +42,10 @@ const user = new mongoose.Schema({
     const salt = await bcrypt.genSalt(10)
     this.password = await bcrypt.hash(this.password,salt)
   })
+  user.methods.comparePassword = async function (canditatePassword) {
+    const isMatch = await bcrypt.compare(canditatePassword, this.password);
+    return isMatch;
+  };
 
   const User = mongoose.model('User',user)
 

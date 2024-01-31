@@ -5,11 +5,14 @@ import connect_db from './db/connect_db.js'
 import errorHandlerMiddleware from './middleware/error-handler.js'
 import cors from 'cors'
 import 'express-async-errors'
-
+import cookieParser from 'cookie-parser'
 dotenv.config()
 
 const app = express()
+
 app.use(express.json())
+app.use(cookieParser(process.env.JWT_SECRET));
+
 const corsOptions = {
   origin: 'http://localhost:5173', // Замените на адрес вашего React-приложения
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

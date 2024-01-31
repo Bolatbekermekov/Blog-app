@@ -1,12 +1,14 @@
 import {Footer} from 'flowbite-react'
+import {BsFacebook,BsInstagram,BsTwitter,BsGithub} from 'react-icons/bs'
+
 import { Link } from 'react-router-dom';
 
 export default function FooterCom(){
   return(
     <Footer container className='border border-t-8 border-teal-500'>
-      <div className=''>
-        <div className=''>
-          <div className=''>
+      <div className='w-full max-w-7xl mx-auto'>
+        <div className='grid w-full justify-between sm:flex md:grid-cols-1'>
+          <div className='mt-5'>
             <Link
             to='/'
             className='self-center whitespace-nowrap text-sm sm:text-lg font-semibold dark:text-white'
@@ -18,7 +20,7 @@ export default function FooterCom(){
 
           </Link>
           </div>
-          <div className='grid grid-cols-2 gap-3 sm:mt-4 sm:grid-cols-3 sm:gap-6'>
+          <div className='grid grid-cols-2 gap-8 mt-4 sm:grid-cols-3 sm:gap-6'>
             <div>  <Footer.Title title='About'/>
             <Footer.LinkGroup col >
               <Footer.Link 
@@ -49,10 +51,10 @@ export default function FooterCom(){
                   </Footer.Link>
 
                   <Footer.Link 
-                    href="#"
+                    href="https://t.me/bolatbekermeko_v"
                     target='_blank'
                     rel='noopener noreferrer'>
-                        Discord
+                        Telegram
                   </Footer.Link>
                   </Footer.LinkGroup>
                   </div>
@@ -67,6 +69,21 @@ export default function FooterCom(){
             </div>
 
            
+        </div>
+        <Footer.Divider />
+        <div className='w-full sm:flex sm:items-center sm:justify-between'>
+          <Footer.Copyright
+          href='#'
+          by="Bolatbek's blog"
+          year={new Date().getFullYear()}
+          />
+          <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-center'>
+            <Footer.Icon href="https://www.facebook.com/profile.php?id=61553412766966&locale=ru_RU" icon={BsFacebook} target='_blank'/>
+            <Footer.Icon href="https://www.instagram.com/bolatbekermeko_v/?next=%2F" icon={BsInstagram} target='_blank'/>
+            <Footer.Icon href="https://github.com/Bolatbekermekov" icon={BsGithub} target='_blank'/>
+            <Footer.Icon href="#" icon={BsTwitter} target='_blank'/>
+
+          </div>
         </div>
       </div>  
     </Footer>
