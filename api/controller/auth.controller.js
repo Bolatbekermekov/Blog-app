@@ -46,6 +46,33 @@ export const login = asyncError(async (req, res,next) => {
   res.status(StatusCodes.OK).json({ user: tokenUser });
 })
 
+export const google = asyncError(async (req,res,next)=>{
+  const {email,username,googlePhotoUrl} =req.body
+  const user = await User.findOne({email})
+  if (user) {
+   const tokenUser = createTokenUser(user);
 
+  attachCookiesToResponse({ res, user: tokenUser });
 
+  res.status(StatusCodes.OK).json({ user: tokenUser }); 
+}else{
+  const generatedPassword =
+  Math.random().toString(36).slice(-8) +
+  Math.random().toString(36).slice(-8);
+const newUser = new User({
+  username:
+  username.toLowerCase().split(' ').join('') +
+    Math.random().toString(9).slice(-4),
+  email,
+  password: generatedPassword,
+  profilePicture: googlePhotoUrl,
+});
+await newUser.save();
+const tokenUser = createTokenUser(user);
+
+attachCookiesToResponse({ res, user: tokenUser });
+
+res.status(StatusCodes.OK).json({ user: tokenUser }); }
+
+})
 export default signup
